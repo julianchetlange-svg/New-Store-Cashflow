@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Azle, TX — New Store Capital Proposal</title>
+<title>Reno/Springtown, TX — New Store Capital Proposal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -45,6 +45,13 @@ body{background:var(--concrete);color:var(--text);font-family:'Inter',sans-serif
 .mono{font-family:'IBM Plex Mono',monospace;}
 
 .hazard-band{height:6px;background:repeating-linear-gradient(135deg,var(--amber) 0 14px,var(--navy) 14px 28px);}
+
+.tab-nav{display:flex;gap:2px;background:var(--white);border-bottom:2px solid var(--border);padding:0 40px;overflow-x:auto;}
+.tab-btn{font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;color:var(--muted);background:none;border:none;border-bottom:3px solid transparent;padding:16px 20px;cursor:pointer;white-space:nowrap;transition:color 0.15s;}
+.tab-btn:hover{color:var(--navy);}
+.tab-btn.active{color:var(--navy);border-bottom-color:var(--amber);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
 
 header{background:linear-gradient(180deg,var(--navy) 0%, var(--navy-mid) 100%);color:var(--white);box-shadow:0 4px 20px rgba(0,0,0,0.25);position:relative;z-index:20;}
 .header-top{display:flex;align-items:center;justify-content:space-between;padding:22px 40px 20px;gap:20px;flex-wrap:wrap;}
@@ -90,6 +97,8 @@ p.lede{color:var(--muted);max-width:820px;margin:0 0 18px;font-size:13.5px;}
 .tag-label{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--warn); text-transform:uppercase; letter-spacing:.08em; display:block; margin-bottom:6px;}
 
 table{width:100%;border-collapse:collapse;font-size:13px;}
+table.even-table{table-layout:fixed;}
+table.even-table th, table.even-table td{text-align:center;}
 thead th{background:var(--gray-50);color:var(--muted);font-size:11px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;text-align:left;padding:9px 14px;border-bottom:1px solid var(--border);}
 tbody td{padding:8px 14px;border-bottom:1px solid var(--gray-100);color:var(--text);}
 tbody tr:last-child td{border-bottom:none;}
@@ -119,6 +128,7 @@ th.num,td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:'IB
 .stat.good .n{color:var(--pos);}
 
 .chart-wrap{position:relative;}
+.full-bleed{width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;}
 
 .heatmap-table{width:100%;border-collapse:collapse;font-size:12.5px;}
 .heatmap-table th{background:var(--gray-50);color:var(--muted);font-size:10.5px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;text-align:center;padding:9px 8px;border-bottom:1px solid var(--border);white-space:nowrap;}
@@ -139,7 +149,7 @@ footer{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);b
       <div class="logo-badge">McCoy's</div>
       <div class="hdr-div"></div>
       <div>
-        <div class="header-title">Azle, TX <span>New Store</span></div>
+        <div class="header-title">Reno/Springtown, TX <span>New Store</span></div>
         <div class="header-sub">Capital Investment Proposal &amp; Cash Flow Timeline · Sequenced against Canyon Lake</div>
       </div>
     </div>
@@ -148,62 +158,87 @@ footer{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);b
 </header>
 <div class="hazard-band"></div>
 
+<nav class="tab-nav">
+  <button class="tab-btn active" id="tabbtn-1" onclick="showTab(1)">01 · Why Now</button>
+  <button class="tab-btn" id="tabbtn-2" onclick="showTab(2)">02 · Budget Summary</button>
+  <button class="tab-btn" id="tabbtn-3" onclick="showTab(3)">03 · Historical Benchmark</button>
+  <button class="tab-btn" id="tabbtn-4" onclick="showTab(4)">04 · Cash Flow Timeline</button>
+</nav>
+
 <main>
 
+  <div class="tab-panel active" id="tab-1">
   <!-- WHY NOW -->
   <div class="section-header"><h2>Why Now</h2><div class="section-line"></div><div class="section-badge">01 · Rationale</div></div>
-  <div class="two-col">
-    <div class="panel">
-      <div class="panel-header">Regulatory Timeline</div>
-      <div class="panel-body">
-        <div class="editable" contenteditable="true">
-          <span class="tag-label">Editable — insert specifics</span>
-          [Insert the specific Azle ordinance/code update under consideration, its expected adoption date, and how it would change site, building, or permitting requirements for this store — e.g. setback, drainage, facade, or fire code changes. Cite the city council agenda or planning department source.] Breaking ground ahead of adoption locks in the current, less costly requirements.
-        </div>
-      </div>
+  <div class="panel">
+    <div class="panel-header">Jurisdiction Comparison <span class="ytag">confirmed</span></div>
+    <div class="panel-body" style="padding:0;">
+      <table class="even-table">
+        <thead><tr><th>Location</th><th>Type</th><th>Energy Code</th><th>Landscaping</th><th>Site Plan</th></tr></thead>
+        <tbody>
+          <tr><td><b>Lubbock</b></td><td>Incorporated city</td><td>2021 IECC</td><td>Developer-mandated, not a city requirement</td><td>Developer + City of Lubbock</td></tr>
+          <tr><td><b>Lockhart</b></td><td>Incorporated city</td><td>2021 IECC</td><td>City of Lockhart — Sec. 64-203, being strengthened</td><td>City of Lockhart</td></tr>
+          <tr><td><b>Abilene</b></td><td>Incorporated city</td><td>2021 IECC</td><td>City of Abilene</td><td>City of Abilene</td></tr>
+          <tr><td><b>New Caney</b></td><td>Unincorporated (Montgomery Co.)</td><td>2021 IECC</td><td>Montgomery County + MUD district requirements</td><td>Montgomery County + MUD district requirements</td></tr>
+          <tr><td><b>Canyon Lake</b></td><td>Unincorporated (Comal Co.)</td><td>2021 IECC</td><td>Mystic Shores ACC</td><td>Mystic Shores ACC + Comal County</td></tr>
+          <tr style="background:var(--amber-pale);"><td><b>Reno (project site)</b></td><td><b>Incorporated city</b></td><td><b>2018 IECC</b></td><td><b>Not required — standard C-1/C-2 commercial districts</b></td><td><b>Not required — standard C-1/C-2 commercial districts</b></td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="panel">
-      <div class="panel-header">Sequencing Rationale</div>
-      <div class="panel-body">
-        <p style="color:var(--muted);font-size:13.5px;">
-          Leadership has limited appetite for two major store builds running at full spend simultaneously. The model below sequences Azle to begin as Canyon Lake's cash burn is already tailing off toward its <b style="color:var(--navy)">5/20/2027</b> completion — so the combined monthly outflow stays close to what one project alone would require, rather than stacking two peaks.
-        </p>
-      </div>
+  </div>
+  <p style="font-size:13px;color:var(--muted);margin:-4px 0 12px;">
+    <b style="color:var(--navy)">Why:</b> securing the permit now locks in the current, favorable regulatory environment before anticipated changes drive up cost.
+  </p>
+  <div class="panel">
+    <div class="panel-header">Regulatory Cost Avoidance</div>
+    <div class="panel-body" style="padding:0;">
+      <table class="even-table">
+        <thead><tr><th>Item</th><th>Est. Savings</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Energy code (MEP)</td><td>$75K–$100K</td><td>Reno's 2018 IECC vs. the 2021 IECC used on all four benchmark stores lowers HVAC, electrical, and lighting scope.</td></tr>
+          <tr><td>Landscaping</td><td>$50K</td><td>No landscaping requirement, vs. mandatory tree/flowerbed scope in Lubbock, Lockhart, Abilene, and New Caney (turf and irrigation still added voluntarily).</td></tr>
+          <tr><td>Site plan / SUP</td><td>$10K</td><td>No site plan or outside-storage SUP required post-rezoning — avoided engineering time and review cycles.</td></tr>
+          <tr style="background:var(--amber-pale);"><td><b>Combined</b></td><td><b>$135K–$160K</b></td><td>On this project's $9.51M budget.</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
+  </div>
+
+  <div class="tab-panel" id="tab-2">
   <!-- BUDGET SUMMARY -->
   <div class="section-header"><h2>Budget Summary</h2><div class="section-line"></div><div class="section-badge">02 · Capital</div></div>
-  <div class="kpi-grid">
-    <div class="kpi-card amber">
-      <div class="kpi-label">Azle — Design</div>
-      <div class="kpi-value">$420K</div>
-    </div>
-    <div class="kpi-card amber">
-      <div class="kpi-label">Azle — Construction</div>
-      <div class="kpi-value">$9.20M</div>
-    </div>
-    <div class="kpi-card amber">
-      <div class="kpi-label">Azle — Total</div>
-      <div class="kpi-value">$9.62M</div>
-    </div>
-    <div class="kpi-card navy">
-      <div class="kpi-label">Canyon Lake — Design</div>
-      <div class="kpi-value">$400K</div>
-    </div>
-    <div class="kpi-card navy">
-      <div class="kpi-label">Canyon Lake — Construction</div>
-      <div class="kpi-value">$10.50M</div>
-    </div>
-    <div class="kpi-card navy">
-      <div class="kpi-label">Canyon Lake — Total</div>
-      <div class="kpi-value">$10.90M</div>
+
+  <div class="panel" style="margin-top:0;">
+    <div class="panel-header">All Projects — Design / PEMB / GC / McCoy's Scope <span class="ytag">Canyon Lake's McCoy's Scope estimated at the 6.0% average rate</span></div>
+    <div class="panel-body" style="padding:0;">
+      <table class="even-table">
+        <thead><tr><th>Store</th><th>Design</th><th>PEMB</th><th>GC</th><th>McCoy's Scope</th><th>Total</th></tr></thead>
+        <tbody>
+          <tr><td>Lubbock</td><td>$456,361</td><td>$3,544,420</td><td>$7,263,844</td><td>$686,702</td><td>$11,951,327</td></tr>
+          <tr><td>Lockhart</td><td>$401,230</td><td>$3,050,780</td><td>$7,127,243</td><td>$598,816</td><td>$11,178,069</td></tr>
+          <tr><td>Abilene</td><td>$395,466</td><td>$2,415,836</td><td>$5,541,674</td><td>$330,605</td><td>$8,683,581</td></tr>
+          <tr><td>New Caney</td><td>$455,887</td><td>$2,833,992</td><td>$5,959,843</td><td>$810,947</td><td>$10,060,669</td></tr>
+          <tr><td>Canyon Lake</td><td>$379,625</td><td>$3,238,925</td><td>$6,891,480</td><td>$489,970</td><td>$11,000,000</td></tr>
+          <tr style="background:var(--amber-pale);"><td><b>Reno/Springtown</b></td><td><b>$395,466</b></td><td><b>$2,650,000</b></td><td><b>$5,970,356</b></td><td><b>$489,970</b></td><td><b>$9,505,792</b></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
+  </div>
+
+  <div class="tab-panel" id="tab-3">
   <!-- HISTORICAL BENCHMARK -->
   <div class="section-header"><h2>Historical Benchmark</h2><div class="section-line"></div><div class="section-badge">03 · Four Store Builds</div></div>
   <p class="lede">Invoice-level spend (paid date) from Lockhart, Abilene, Lubbock, and New Caney, normalized by percent of each project's own duration so builds of different length and size compare on one curve. This shape is what drives the projections in Section 04.</p>
+  <div class="panel">
+    <div class="panel-header">Cumulative Spend vs. % of Design Duration Elapsed <span class="ytag">4 stores</span></div>
+    <div class="panel-body">
+      <div class="chart-wrap"><canvas id="designBenchChart" height="90"></canvas></div>
+    </div>
+  </div>
   <div class="panel">
     <div class="panel-header">Cumulative Spend vs. % of Construction Duration Elapsed <span class="ytag">4 stores</span></div>
     <div class="panel-body">
@@ -212,8 +247,8 @@ footer{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);b
   </div>
   <div class="panel">
     <div class="panel-body" style="padding:0;">
-      <table>
-        <thead><tr><th>Store</th><th class="num">Total Spend</th><th class="num">Design %</th><th class="num">Land Clearing</th><th class="num">Construction %</th><th class="num">Design Duration</th><th class="num">Construction Duration</th></tr></thead>
+      <table class="even-table">
+        <thead><tr><th>Store</th><th>Total Spend</th><th>Design %</th><th>Land Clearing</th><th>Construction %</th></tr></thead>
         <tbody id="benchTable"></tbody>
       </table>
     </div>
@@ -222,17 +257,20 @@ footer{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);b
     <b style="color:var(--navy);">Note:</b> Land clearing is broken out as its own pre-mobilization line rather than folded into Construction — New Caney's site had $126.5K of clearing done well before the general contractor mobilized (June–Sept 2024), and including it in the construction curve would have distorted the blended ramp with an artificially long, thin front end.
   </p>
 
+  </div>
+
+  <div class="tab-panel" id="tab-4">
   <!-- INTERACTIVE TIMELINE -->
   <div class="section-header"><h2>Combined Cash Flow Timeline</h2><div class="section-line"></div><div class="section-badge">04 · Interactive Model</div></div>
-  <p class="lede">Move the Azle start date to see the combined monthly outflow against Canyon Lake's tail. The blended historical curve is applied to each project's budget; adjust the assumptions below if actual contracts differ.</p>
+  <p class="lede">Move the Reno/Springtown start date to see the combined monthly outflow against Canyon Lake's tail. The blended historical curve is applied to each project's budget; adjust the assumptions below if actual contracts differ.</p>
 
   <div class="panel">
     <div class="panel-header">Model Controls</div>
     <div class="panel-body">
       <div class="controls">
         <div class="ctrl">
-          <label>Azle start date</label>
-          <input type="month" id="azleStart" value="2026-10">
+          <label>Reno/Springtown start date</label>
+          <input type="month" id="azleStart" value="2026-09">
         </div>
         <div class="ctrl">
           <label>Canyon Lake completion</label>
@@ -247,7 +285,7 @@ footer{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);b
           <label style="margin:0;">Show combined total line</label>
         </div>
         <div class="ctrl toggle-row">
-          <input type="checkbox" id="splitDesign">
+          <input type="checkbox" id="splitDesign" checked>
           <label style="margin:0;">Break out design vs. construction</label>
         </div>
       </div>
@@ -258,7 +296,7 @@ footer{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);b
         <div class="grid">
           <div class="ctrl">
             <label>Design duration (months)</label>
-            <input type="range" id="designDur" min="3" max="32" value="6">
+            <input type="range" id="designDur" min="3" max="32" value="7">
             <div class="rangeval"><span id="designDurVal"></span> months</div>
           </div>
           <div class="ctrl">
@@ -268,7 +306,7 @@ footer{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);b
           </div>
           <div class="ctrl">
             <label>Design lead before construction start (months)</label>
-            <input type="range" id="leadMonths" min="0" max="12" value="6">
+            <input type="range" id="leadMonths" min="0" max="12" value="7">
             <div class="rangeval"><span id="leadMonthsVal"></span> months</div>
           </div>
         </div>
@@ -301,16 +339,18 @@ footer{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);b
     </div>
     <div class="stat">
       <div class="n" id="statAzlePeak">–</div>
-      <div class="l">Azle peak monthly burn (standalone)</div>
+      <div class="l">Reno/Springtown peak monthly burn (standalone)</div>
     </div>
     <div class="stat good">
       <div class="n" id="statFinish">–</div>
-      <div class="l">Azle projected completion</div>
+      <div class="l">Reno/Springtown projected completion</div>
     </div>
   </div>
 
+  </div>
+
   <footer>
-    Methodology: monthly spend curves derived from paid-invoice history on Lockhart, Abilene, Lubbock, and New Caney (Design vs. Construction categorized per Work Order Category; New Caney's PEMB building payments reclassified from Design to Construction for consistency with the other three stores). Curves are normalized to percent-of-duration and blended equally across the four stores, then applied to Azle's and Canyon Lake's budgets. This is a planning model, not a contractual schedule — actual draws will vary with contract terms and change orders.
+    Methodology: monthly spend curves derived from paid-invoice history on Lockhart, Abilene, Lubbock, and New Caney (Design vs. Construction categorized per Work Order Category; New Caney's PEMB building payments reclassified from Design to Construction for consistency with the other three stores). Curves are normalized to percent-of-duration and blended equally across the four stores, then applied to Reno/Springtown's and Canyon Lake's budgets. This is a planning model, not a contractual schedule — actual draws will vary with contract terms and change orders.
   </footer>
 
 </main>
@@ -327,6 +367,13 @@ const historical = [
   {store:'Lubbock', total:11951327, designPct:0.038, landClearing:0, constrPct:0.962, designDur:26, constrDur:29},
   {store:'New Caney', total:10060669, designPct:0.0453, landClearing:126500, constrPct:0.9421, designDur:25, constrDur:20},
 ];
+
+const storeDesignCurves = {
+  'Lockhart':   [0.0,0.0752,0.1019,0.1869,0.2303,0.3954,0.5318,0.616,0.644,0.7189,0.7665,0.7906,0.8032,0.8239,0.8486,0.8979,0.9582,0.9846,0.9883,0.9923,1.0],
+  'Abilene':    [0.0,0.1142,0.1142,0.2088,0.4469,0.5955,0.665,0.75,0.8112,0.8661,0.8932,0.9229,0.9495,0.9881,0.9944,0.9944,0.9944,0.9944,0.9944,0.9944,1.0],
+  'Lubbock':    [0.0,0.0391,0.1783,0.2639,0.2879,0.3401,0.4189,0.5542,0.613,0.6575,0.6882,0.7043,0.8151,0.8898,0.9049,0.934,0.953,0.9856,0.9964,0.9996,1.0],
+  'New Caney':  [0.0,0.044,0.1655,0.3815,0.5151,0.5547,0.6094,0.6639,0.7037,0.725,0.7505,0.7692,0.7957,0.8233,0.8481,0.8776,0.8982,0.9301,0.9734,0.9945,1.0],
+};
 
 const storeConstrCurves = {
   'Lockhart':   [0,0.001,0.037,0.126,0.185,0.315,0.395,0.479,0.551,0.577,0.61,0.701,0.824,0.911,0.947,0.992,0.995,0.995,0.995,0.996,1.0],
@@ -371,6 +418,42 @@ function fmtM(n){ return '$'+(n/1000000).toFixed(2)+'M'; }
 function fmtK(n){ return '$'+Math.round(n/1000).toLocaleString()+'K'; }
 
 const benchLabels = Array.from({length:21}, (_,i)=>i*5+'%');
+
+const designBenchDatasets = Object.keys(storeDesignCurves).map((s,idx)=>{
+  const colors = ['#3d8b5e','#F5C300','#1B4D2E','#b3341f'];
+  return {
+    label: s,
+    data: storeDesignCurves[s].map(v=>v*100),
+    borderColor: colors[idx%4],
+    backgroundColor:'transparent',
+    borderWidth:2,
+    pointRadius:0,
+    tension:0.25,
+  };
+});
+designBenchDatasets.push({
+  label:'Blended average',
+  data: designCurve.map(v=>v*100),
+  borderColor:'#1c1f1a',
+  borderDash:[6,4],
+  borderWidth:2.5,
+  pointRadius:0,
+  tension:0.25,
+});
+const designChartInstance = new Chart(document.getElementById('designBenchChart'), {
+  type:'line',
+  data:{ labels: benchLabels, datasets: designBenchDatasets },
+  options:{
+    responsive:true,
+    plugins:{ legend:{ position:'bottom', labels:{ font:{family:"'Inter'"}, boxWidth:14 } },
+      title:{ display:true, text:'Cumulative % of design budget spent, by % of design duration elapsed', font:{family:"'Inter'", size:12, weight:'500'}, color:'#5b6058' } },
+    scales:{
+      y:{ title:{display:true, text:'% of design budget spent'}, ticks:{callback:v=>v+'%'}, grid:{color:'#ececE8'} },
+      x:{ title:{display:true, text:'% of design duration elapsed'}, grid:{color:'#ececE8'} }
+    }
+  }
+});
+
 const benchDatasets = Object.keys(storeConstrCurves).map((s,idx)=>{
   const colors = ['#3d8b5e','#F5C300','#1B4D2E','#b3341f'];
   return {
@@ -393,7 +476,7 @@ benchDatasets.push({
   tension:0.25,
 });
 
-new Chart(document.getElementById('benchChart'), {
+const constrChartInstance = new Chart(document.getElementById('benchChart'), {
   type:'line',
   data:{ labels: benchLabels, datasets: benchDatasets },
   options:{
@@ -410,12 +493,12 @@ new Chart(document.getElementById('benchChart'), {
 const benchTableBody = document.getElementById('benchTable');
 historical.forEach(h=>{
   const tr = document.createElement('tr');
-  tr.innerHTML = `<td>${h.store}</td><td class="num">${fmtM(h.total)}</td><td class="num">${(h.designPct*100).toFixed(1)}%</td><td class="num">${h.landClearing>0 ? fmtK(h.landClearing) : '—'}</td><td class="num">${(h.constrPct*100).toFixed(1)}%</td><td class="num">${h.designDur} mo</td><td class="num">${h.constrDur} mo</td>`;
+  tr.innerHTML = `<td>${h.store}</td><td class="num">${fmtM(h.total)}</td><td class="num">${(h.designPct*100).toFixed(1)}%</td><td class="num">${h.landClearing>0 ? fmtK(h.landClearing) : '—'}</td><td class="num">${(h.constrPct*100).toFixed(1)}%</td>`;
   benchTableBody.appendChild(tr);
 });
 
-const AZLE_DESIGN = 420000, AZLE_CONSTR = 9200000;
-const CANYON_DESIGN = 400000, CANYON_CONSTR = 10500000;
+const AZLE_DESIGN = 395466, AZLE_CONSTR = 9110326;
+const CANYON_DESIGN = 379625, CANYON_CONSTR = 10620375;
 const CANYON_TOTAL = CANYON_DESIGN + CANYON_CONSTR;
 
 const els = {
@@ -532,14 +615,14 @@ function render(){
 
   const datasets = [];
   if(split){
-    datasets.push({ label:'Azle — Design', data:azleAligned.designArr, backgroundColor:'#FCE38A', stack:'s' });
-    datasets.push({ label:'Azle — Construction', data:azleAligned.constrArr, backgroundColor:'#F5C300', stack:'s' });
+    datasets.push({ label:'Reno/Springtown — Design', data:azleAligned.designArr, backgroundColor:'#FCE38A', stack:'s' });
+    datasets.push({ label:'Reno/Springtown — Construction', data:azleAligned.constrArr, backgroundColor:'#F5C300', stack:'s' });
     if(els.showCanyon.checked){
       datasets.push({ label:'Canyon Lake — Design', data:canyonAligned.designArr, backgroundColor:'#8fbf9f', stack:'s' });
       datasets.push({ label:'Canyon Lake — Construction', data:canyonAligned.constrArr, backgroundColor:'#1B4D2E', stack:'s' });
     }
   } else {
-    datasets.push({ label:'Azle', data:azleArr, backgroundColor:'#F5C300', stack:'s' });
+    datasets.push({ label:'Reno/Springtown', data:azleArr, backgroundColor:'#F5C300', stack:'s' });
     if(els.showCanyon.checked){
       datasets.push({ label:'Canyon Lake', data:canyonArr, backgroundColor:'#1B4D2E', stack:'s' });
     }
@@ -579,6 +662,16 @@ function render(){
   renderHeatmap(combined, yearBase, monthBase);
 }
 render();
+
+function showTab(n){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+n).classList.add('active');
+  document.getElementById('tabbtn-'+n).classList.add('active');
+  // Charts created while their tab was hidden get sized to 0 -- fix on first reveal.
+  if(n===3){ designChartInstance.resize(); constrChartInstance.resize(); }
+  if(n===4 && cashChart){ cashChart.resize(); }
+}
 </script>
 </body>
 </html>
